@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(255, 255, 255);
+}
+.wrap {
+    margin-left: 2%;
+    margin-left: 40%;
+}
+
+header{
+    margin-left: 35%;
+    font-size: 60px
+}
+
+.little-heading {
+    font-size: 10px;
+    margin-left: 40%
+}
