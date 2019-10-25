@@ -1,19 +1,11 @@
 import React, {Component} from 'react';
-import UserDetails from '../UserDetails/userDetails';
+import {UserDetails} from '../UserDetails/userDetails';
 import Confirm from '../Confirm/confirm';
 import UserTable from '../Table/table';
 import './signUpForm.style.css';
 
 export class SignUpForm extends Component {
    
-state = {
-    step: 1,
-    firstName: '',
-    lastName: '',
-    birthDay: '',
-    age: '',
-    hobby: '',
-}
 
 
 nextStep =()=> {
@@ -30,10 +22,44 @@ prevStep =()=> {
     });
 }
 
-// handle fields change
-handleChange = input => e => {
+constructor(props){
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+     
+    this.state = {
+        step: 1,
+        firstName: '',
+        lastName: '',
+        birthDay: '',
+        age: '',
+        hobby: '',
+    }
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    let contact = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      age: this.state.age,
+      birthDay: this.state.birthDay,
+      hobby: this.state.hobby
+    }
+    this.setState({
+        firstName: '',
+        lastName: '',
+        age: '',
+        birthDay: '',
+        hobby: '',
+    });
+    this.props.signUp(contact);
+  }
+
+  handleChange = input => e => {
     this.setState({[input]: e.target.value})
 }
+
 
 render() {
     const {step} = this.state;
@@ -70,6 +96,5 @@ render() {
     }
     }
 }
-
 
 export default SignUpForm;

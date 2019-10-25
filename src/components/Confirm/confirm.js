@@ -4,12 +4,11 @@ import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import '../UserDetails/userDetails.style.css';
 
-
 export class Confirm extends Component {
-    continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
-    };
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.nextStep();
+}
     back = e => {
         e.preventDefault();
         this.props.prevStep();
@@ -17,7 +16,7 @@ export class Confirm extends Component {
 
 
   render() {
-      const{ values: {firstName, lastName, birthDay, age, hobby}} = this.props;
+    const{ values: {firstName, lastName, birthDay, age, hobby}} = this.props;
     return (
         
       <MuiThemeProvider>
@@ -27,7 +26,7 @@ export class Confirm extends Component {
 <List>
 <ListItem
 primaryText="First name"
-secondaryText={firstName}
+secondaryText= {firstName}
 />
 
 <ListItem
@@ -55,7 +54,7 @@ secondaryText={hobby}
 label = "confirm & continue"
 primary={true}
 style={styles.button}
-onClick={this.continue}
+onClick={this.handleSubmit}
 />
 <RaisedButton
 label = "back"
@@ -74,4 +73,7 @@ onClick={this.back}
   const styles ={
       button: {margin: 15}
 }
+
+
+
 export default Confirm;
