@@ -3,9 +3,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import './userDetails.style.css';
+import {useSelector, useDispatch } from 'react-redux'
+// import {newUser, AllUsers} from '../../action/index';
 
 export class UserDetails extends Component {
-    continue = e => {
+    handleSubmit = e => {
         e.preventDefault();
         this.props.nextStep();
     }
@@ -37,9 +39,6 @@ export class UserDetails extends Component {
         type="date"
         onChange={handleChange('birthDay')}
         defaultValue="2017-05-24"
-        InputLabelProps={{
-            shrink: true,
-          }}
       />
 <br />
 <TextField
@@ -60,18 +59,29 @@ export class UserDetails extends Component {
 label = "continue"
 primary={true}
 style={styles.button}
-onClick={this.continue}
-/>
+onClick={this.handleSubmit}
+/> 
 </div>
 </React.Fragment>
     </MuiThemeProvider>
     );
   }
 }
+// button style
+  const styles = { button: { margin: 15 }}
 
-  const styles ={
-      button: {
-          margin: 15
-        }
-}
-export default UserDetails;
+export const UsersStateComponent = () => {
+    const users= useSelector(state => state.users)
+    return <div>{users}</div>
+  }
+
+  export const UsersDispatchComponent = () => {
+    const dispatch = useDispatch()
+  
+    return (
+      <div>
+        <button onClick={() => dispatch({ type: 'ALL_USERS' })}>check
+        </button>
+      </div>
+    )
+  }
